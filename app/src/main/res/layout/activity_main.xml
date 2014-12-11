@@ -1,0 +1,145 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/hd_wallpaper"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tableLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:layout_width="@dimen/square_equal_width"
+                android:layout_weight="1"
+                android:layout_height="@dimen/square_side"
+                android:id="@+id/btn_1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/teh"
+                android:padding="@dimen/btn_padding"/>
+
+            <ImageButton
+                android:layout_width="@dimen/square_equal_width"
+                android:layout_weight="1"
+                android:layout_height="@dimen/square_side"
+                android:id="@+id/btn_2"
+                android:scaleType="fitCenter"
+                android:src="@drawable/teh_ping"
+                android:padding="@dimen/btn_padding"/>
+
+            <ImageButton
+                android:layout_width="@dimen/square_equal_width"
+                android:layout_weight="1"
+                android:layout_height="@dimen/square_side"
+                android:id="@+id/btn_3"
+                android:scaleType="fitCenter"
+                android:src="@drawable/teh_o"
+                android:padding="@dimen/btn_padding"/>
+
+            <ImageButton
+                android:layout_width="@dimen/square_equal_width"
+                android:layout_weight="1"
+                android:layout_height="@dimen/square_side"
+                android:id="@+id/btn_4"
+                android:scaleType="fitCenter"
+                android:src="@drawable/kopi"
+                android:padding="@dimen/btn_padding"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:layout_width="@dimen/square_equal_width"
+                android:layout_weight="1"
+                android:layout_height="@dimen/square_side"
+                android:scaleType="fitCenter"
+                android:id="@+id/btn_5"
+                android:src="@drawable/kopi_ping"
+                android:padding="@dimen/btn_padding"/>
+            <ImageButton
+                android:layout_width="@dimen/square_equal_width"
+                android:layout_weight="1"
+                android:layout_height="@dimen/square_side"
+                android:scaleType="fitCenter"
+                android:id="@+id/btn_6"
+                android:src="@drawable/kopi_o"
+                android:padding="@dimen/btn_padding"/>
+            <ImageButton
+                android:layout_width="@dimen/square_equal_width"
+                android:layout_weight="1"
+                android:layout_height="@dimen/square_side"
+                android:scaleType="fitCenter"
+                android:id="@+id/btn_7"
+                android:src="@drawable/coke"
+                android:padding="@dimen/btn_padding"/>
+            <ImageButton
+                android:layout_width="@dimen/square_equal_width"
+                android:layout_weight="1"
+                android:layout_height="@dimen/square_side"
+                android:scaleType="fitCenter"
+                android:id="@+id/btn_8"
+                android:src="@drawable/ice_lemon_tea"
+                android:padding="@dimen/btn_padding"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <ImageButton
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:scaleType="fitCenter"
+                android:id="@+id/btn_9"
+                android:src="@drawable/jiajia"
+                android:padding="@dimen/btn_padding"/>
+        </TableRow>
+    </TableLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:ems="10"
+        android:id="@+id/orderListText" />
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tableLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        <TableRow
+            android:id="@+id/tableRow2_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clear Order"
+                android:id="@+id/clearbutton"
+                android:layout_gravity="left" />
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Order"
+                android:id="@+id/orderbutton"
+                android:layout_gravity="right" />
+            </TableRow>
+    </TableLayout>
+
+</LinearLayout>
