@@ -2,20 +2,16 @@ package com.jkgarage.kopiorder;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Toast;
+//import android.widget.Toast;
 import android.widget.Button;
 
 public class MainActivity extends ActionBarActivity {
-
-    //ImageButton tehBtn;
-    //ImageButton [] btnList;
 
     Button orderButton, clearButton;
     EditText orderTextView;
@@ -28,17 +24,21 @@ public class MainActivity extends ActionBarActivity {
             R.id.btn_9
     };
 
-    static OrderEntity [] orderList = new OrderEntity[] {
-            new OrderEntity("Teh"),
-            new OrderEntity("Teh-Ping"),
-            new OrderEntity("Teh-O"),
-            new OrderEntity("Kopi"),
-            new OrderEntity("Kopi-Ping"),
-            new OrderEntity("Kopi-O"),
-            new OrderEntity("Coke"),
-            new OrderEntity("Ice Lemon Tea"),
-            new OrderEntity("Jia Jia")
-    };
+    static OrderEntity[] orderList;
+
+    private void initOrderList () {
+        orderList = new OrderEntity[] {
+                new OrderEntity("Teh"),
+                new OrderEntity("Teh-Ping"),
+                new OrderEntity("Teh-O"),
+                new OrderEntity("Kopi"),
+                new OrderEntity("Kopi-Ping"),
+                new OrderEntity("Kopi-O"),
+                new OrderEntity("Coke"),
+                new OrderEntity("Ice Lemon Tea"),
+                new OrderEntity("Jia Jia")
+        };
+    }
 
 
 
@@ -46,6 +46,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initOrderList();
 
         //btnList = new ImageButton[imageButtonIDList.length];
 
@@ -89,14 +91,14 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void addListenerOnButton(final int index) {
-        final String itemName = MainActivity.orderList[index].getItemName();
+        //final String itemName = MainActivity.orderList[index].getItemName();
 
         OnClickListener listenerWithReturn = new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Toast.makeText(MainActivity.this,
-                        "1 " + itemName + " added!",
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this,
+                //        "1 " + itemName + " added!",
+                //        Toast.LENGTH_SHORT).show();
 
                 //Todo : this is not the best way to code
                 //need to find a way to pass variable from activity to Listener
@@ -109,19 +111,14 @@ public class MainActivity extends ActionBarActivity {
 
         //btnList[index] = (ImageButton) findViewById( imageButtonIDList[index] );
         //btnList[index].setOnClickListener(listenerWithReturn);
-        ((ImageButton) findViewById( imageButtonIDList[index] )).setOnClickListener(listenerWithReturn);
+        findViewById( imageButtonIDList[index] ).setOnClickListener(listenerWithReturn);
     }
 
     public void addListenerOnButton(ImageButton btn, final int indexOfOrder) {
-        final String name = MainActivity.orderList[indexOfOrder].getItemName();
 
         OnClickListener listenerWithReturn = new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Toast.makeText(MainActivity.this,
-                        "1 " + name + " added!",
-                        Toast.LENGTH_SHORT).show();
-
                 //Todo : this is not the best way to code
                 //need to find a way to pass variable from activity to Listener
                 MainActivity.orderList[indexOfOrder].addOrder();
@@ -147,17 +144,7 @@ public class MainActivity extends ActionBarActivity {
         clearButton.setOnClickListener( new OnClickListener() {
             @Override
             public void onClick(View view) {
-                orderList = new OrderEntity[] {
-                        new OrderEntity("Teh"),
-                        new OrderEntity("Teh-Ping"),
-                        new OrderEntity("Teh-O"),
-                        new OrderEntity("Kopi"),
-                        new OrderEntity("Kopi-Ping"),
-                        new OrderEntity("Kopi-O"),
-                        new OrderEntity("Coke"),
-                        new OrderEntity("Ice Lemon Tea"),
-                        new OrderEntity("Jia Jia")
-                };
+                initOrderList();
 
                 orderTextView.setText( "All orders cleared !" );
             }
@@ -166,13 +153,33 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private String listOrder () {
-        String result = "=== Current orders ===";
-        for (OrderEntity order : orderList ) {
-            if (order.getQuantity() > 0 )
-                result += "\n>>  " + order.getItemName()  + ":" + order.getQuantity();
-        }
+        int DISPLAY_LENGTH = 17;
+        int totalQuantity = 0;
+        String result = "";
 
+        //use a counter to determine display on 1st column, or 2nd
+        int counter = 0;
+
+        for (OrderEntity order : orderList ) {
+            if (order.getQuantity() > 0 ) {
+                if (counter++ % 2 == 0)
+                    result += "\n> " +
+                            appendToFixLength(order.getItemName() + ":" + order.getQuantity(), DISPLAY_LENGTH);
+                else
+                    result += order.getItemName() + ":" + order.getQuantity();
+
+                totalQuantity += order.getQuantity();
+            }
+        }
+        result = "=== Current orders : (" + totalQuantity + ") ===" + result;
         return result;
+    }
+
+
+    // this utility function is append the string with a set of blank spaces
+    //to fill up the string to a fix width
+    private String appendToFixLength(String input, int length) {
+        return String.format("%-" + length + "s", input);
     }
 
 }
